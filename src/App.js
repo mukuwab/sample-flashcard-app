@@ -11,6 +11,8 @@ import FlashcardList from './Flashcard'; //import Flashcard component
 //and think about each piece in isolation
 //Components can be nested within other components to build complex UIs
 
+//sample questions that help render flashcards
+
 
 function App() {
   //This will be the main component for the flashcard app
@@ -26,7 +28,6 @@ function App() {
   );
 }
 
-//sample questions that help render flashcards
 const SAMPLE_FLASHCARDS = [
 {
   id: 1,
@@ -48,5 +49,6 @@ const SAMPLE_FLASHCARDS = [
 
 }
 ]
+
 
 export default App;

@@ -13,10 +13,10 @@ export default function FlashcardList( {flashcards} ) {
     return(
         
         <div className='card-grid'>
-            //will make the flashcards responsive using CSS grid
-            //will adjust based on the screen size
+            {/* will make the flashcards responsive using CSS grid
+          will adjust based on the screen size */}
 
-            //loop through all flashcards and return the flashcard component for each flashcard
+            {/* loop through all flashcards and return the Flashcard component for each */}
             {flashcards.map(flashcard => {
                 //flashcards.map() will loop through all of the flashcards
                 //flashcards.map(flashcard) will return the flashcard component for each flashcard
