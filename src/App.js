@@ -2,7 +2,7 @@
 //Need to store the SAMPLE_FLASHCARDS in a state variable
 import React, {useState} from 'react';
 
-import FlashcardList from './Flashcard'; //import Flashcard component
+import FlashcardList from './FlashcardList'; //import Flashcard component
 //retrieve the Flashcard component from the Flashcard.js file
 //'./Flashcard' means look in the same directory as this file (App.js)
 //if the file was in a different directory, we would need to specify the path
