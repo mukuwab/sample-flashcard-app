@@ -27,12 +27,7 @@ export default function FlashcardList( {flashcards} ) {
                 //key is a special prop that helps React identify which items have changed, are added,
                 //key = {flashcard.id} is a unique identifier for each flashcard
                 //prevents unnecessary re-renders of the component (flashcard)
-
-
-            }
-
-
-            )
+            })
             
             
             }
