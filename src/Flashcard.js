@@ -3,8 +3,9 @@
 
 import React from 'react'
 
-export default function Flashcard(flashcard) {
+export default function Flashcard({flashcard}) {
   return (
     <div>{flashcard.question}</div>
+    //display the question of the flashcard
   )
 }

@@ -2,7 +2,7 @@
 //Need to store the SAMPLE_FLASHCARDS in a state variable
 import React, {useState} from 'react';
 
-import Flashcard from './Flashcard'; //import Flashcard component
+import FlashcardList from './Flashcard'; //import Flashcard component
 //retrieve the Flashcard component from the Flashcard.js file
 //'./Flashcard' means look in the same directory as this file (App.js)
 //if the file was in a different directory, we would need to specify the path
@@ -22,7 +22,7 @@ function App() {
   //flashcards is the current value of the state variable
 
   return (
-    <Flashcard flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
+    <FlashcardList flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
   );
 }
 
@@ -30,15 +30,15 @@ function App() {
 const SAMPLE_FLASHCARDS = [
 {
   id: 1,
-  question: "What is 2 + 2?",
-  answer: "4",
-  options: ["2", "3", "4", "5"]
+  question: 'What is 2 + 2?',
+  answer: '4',
+  options: ['2', '3', '4', '5']
 
 },
 {
   id: 2,
   question: 'Question 2',
-  answer: "4",
+  answer: '4',
   options: [
     'answer1',
     'answer2',

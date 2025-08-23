@@ -29,11 +29,7 @@ export default function FlashcardList( {flashcards} ) {
                 //prevents unnecessary re-renders of the component (flashcard)
             })
             
-            
             }
-
-
-
         </div>
     )
 }
