@@ -1,8 +1,6 @@
-body{
 
-}
 
-.card{
+.card {
 
 display: flex;
 justify-content: center;
@@ -15,19 +13,19 @@ transform-style: preserve-3d; /*preserve the 3D effect when rotating*/
 height: 150px; /*height of the card*/
 width: 150px; /*width of the card*/
 transition: 150ms; /*animate the rotation over 150 milliseconds*/
-transform: perspective(1000px) rotateY(var(--rotate-y,0)) translateY(var(--translate-y, 0));
-  
+transform: perspective(1000px) rotateY(var(--rotate-y,0)) ;
+/*translateY(var(--translate-y,0));*/
 /* rotateY(var(--rotate-y,0)) means rotate the card on the Y axis based on the value of the --rotate-y variable */
-/* perspective(1000px); /*add perspective to the card to give it a 3D effect */
+/* perspective(1000px); add perspective to the card to give it a 3D effect */
 
-/* translateY(var(--translate-y,0))   default value is 0 */
+/* translateY...  default value is 0 */
 /* create a hover effect for the card */
 cursor: pointer; /*change the cursor to a pointer when hovering over the card*/
 }
 
 
 .card:hover{
-    --translate-y: -2px; /*move the card up 2 pixels on hover*/
+   /* --translate-y: -2px; move the card up 2 pixels on hover*/
     box-shadow: 0 0 10px 4px rgba(0,0,0,.3); /*increase the shadow on hover*/
    
 }
