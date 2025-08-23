@@ -13,6 +13,8 @@ import FlashcardList from './FlashcardList'; //import Flashcard component
 
 //sample questions that help render flashcards
 
+import './App.css'; //import the CSS file for styling
+
 
 function App() {
   //This will be the main component for the flashcard app

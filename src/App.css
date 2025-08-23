@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+}
+
+.card{
+
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative; /*position relative to position the front and back of the card*/
+border-radius: .25rem;  /*rounded corners*/
+box-shadow: 0 0 5px 2px rgba(0,0,0,.3); 
+background-color: white;
+transform-style: preserve-3d; /*preserve the 3D effect when rotating*/
+height: 150px; /*height of the card*/
+width: 150px; /*width of the card*/
+transition: 150ms; /*animate the rotation over 150 milliseconds*/
+transform: perspective(1000px) rotateY(var(--rotate-y,0)) ;
+/*rotateY(var(--rotate-y,0)) means rotate the card on the Y axis based on the value of the --rotate-y variable  
+/*
+/*perspective(1000px); /*add perspective to the card to give it a 3D effect*/
+cursor: pointer; /*change the cursor to a pointer when hovering over the card*/
+}
+
+.card.flip{
+
+    --rotate-y: 180deg; /*rotate the card 180 degrees when flipped*/    
+   
+    
+}
+
+.card .front, .card .back{
+
+    position: absolute; /*position absolute to stack the front and back on top of each other*/
+    padding: 1rem; /*padding inside the card*/
+    backface-visibility: hidden; /*hide the back of the card when not facing the user*/
+}
+
+
+.card .back
+{
+    transform: rotateY(180deg); /*rotate the back of the card 180 degrees*/
+    /*will flip the text on the back of the card*/
+}

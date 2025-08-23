@@ -17,15 +17,36 @@ export default function Flashcard({flashcard}) {
     
   }
   return (
-    <div onClick={()=> setFlip(!flip)}>
-      {/*will set the current flip state to the opposite of what it currently is*/}
-  
+    <div 
+    className={`card ${flip ? 'flip' : ''}`}
+    onClick={()=> setFlip(!flip)}
+      
+    >
+       {/*Note: cannot put comments inside tags like div or h1 */}
+       {/*You need backticks for template literals: `...` */}
+       {/*will set the current flip state to the opposite of what it currently is*/}
 
-      {flip ? flashcard.answer : flashcard.question}
-      {/*if flip is true, show the answer, else show the question*/}
-    
-    {/*display the question of the flashcard*/}
-    {/* This is how you make a comment in JSX */}
+      
+       {/* Clicking flips the card */}
+
+      <div className='front'>
+        {flashcard.question}
+        <div className='flashcard-options'>
+          {flashcard.options.map(option => (
+            <div className='flashcard-option' key={option}>
+              {option}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='back'>{flashcard.answer}</div>
     </div>
-  )
+  );
 }
+      
+      
+      
+      
+      
+
