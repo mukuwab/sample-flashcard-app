@@ -1,7 +1,16 @@
-import React, {useState} from 'react';
-import Flashcard from './Flashcard';
 
 //Need to store the SAMPLE_FLASHCARDS in a state variable
+import React, {useState} from 'react';
+
+import Flashcard from './Flashcard'; //import Flashcard component
+//retrieve the Flashcard component from the Flashcard.js file
+//'./Flashcard' means look in the same directory as this file (App.js)
+//if the file was in a different directory, we would need to specify the path
+
+//Note: a component is a way to split the UI into independent, reusable pieces
+//and think about each piece in isolation
+//Components can be nested within other components to build complex UIs
+
 
 function App() {
   //This will be the main component for the flashcard app
@@ -13,7 +22,7 @@ function App() {
   //flashcards is the current value of the state variable
 
   return (
-    <Flashcard flashcards={flashcards} />
+    <Flashcard flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
   );
 }
 
