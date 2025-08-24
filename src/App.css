@@ -1,12 +1,21 @@
 
 body{
 
-    background-color: rgb(0, 224, 224); /*light blue background color*/
+    background-color: rgb(90, 14, 99); /*light blue background color*/
     margin: 0; /*remove default margin*/
 }
 
 .card-grid{
     display: grid; /*use CSS grid to layout the cards*/
+    /* grid-template-columns: repeat(4, 1fr); create 4 equal columns */
+    /* grid-template-rows: repeat(3, 1fr); create 3 equal rows */
+    /* grid-gap: 1rem; add gap between the cards */
+    align-items: center; /*center the cards vertically*/
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /*auto-fill will create as many columns as possible based on the minmax value*/
+    /*minmax(200px, 1fr) will create columns that are at least 200px wide and will grow to fill the available space*/
+    /*1fr means 1 fraction of the available space*/
+    gap: 1rem; /*add gap between the cards*/
 }
 
 .card {
@@ -20,7 +29,7 @@ box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
 background-color: white;
 transform-style: preserve-3d; /*preserve the 3D effect when rotating*/
 height: 150px; /*height of the card*/
-width: 150px; /*width of the card*/
+/*width: 150px; /*width of the card- REMOVED after adding grid elements in .card:grid*/
 transition: 150ms; /*animate the rotation over 150 milliseconds*/
 transform: perspective(1000px) rotateY(var(--rotate-y,0)) 
 translateY(var(--translate-y,0));
@@ -32,14 +41,14 @@ translateY(var(--translate-y,0));
 }
 
 
-.card:hover{
+.card:hover {
     translate-y: -2px;/* move the card up 2 pixels on hover;*/
     box-shadow: 0 0 10px 4px rgba(0,0,0,.3); /*increase the shadow on hover*/ 
     cursor: pointer; 
 }
 
 
-.card.flip{
+.card.flip {
 
     --rotate-y: 180deg; /*rotate the card 180 degrees when flipped*/    
    
@@ -53,9 +62,7 @@ translateY(var(--translate-y,0));
     backface-visibility: hidden; /*hide the back of the card when not facing the user*/
 }
 
-
-.card .back
-{
+.card .back {
     transform: rotateY(180deg); /*rotate the back of the card 180 degrees*/
     /*will flip the text on the back of the card*/
 }

@@ -1,4 +1,5 @@
 
+//Hello this is monica
 //Need to store the SAMPLE_FLASHCARDS in a state variable
 import React, {useState,useEffect} from 'react';
 
@@ -121,7 +122,13 @@ function App() {
   
   }
   return (
-    <FlashcardList flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
+    <div className="container">
+      <FlashcardList flashcards={flashcards} />
+    </div>
+    //FlashcardList component to display the list of flashcards
+    //pass flashcards as a prop to FlashcardList component
+    //div with className container for styling
+    //this will prevent the flashcards from touching the edges of the screen
   );
 }
 
