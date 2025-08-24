@@ -1,8 +1,14 @@
 
 body{
 
-    background-color: rgb(90, 14, 99); /*light blue background color*/
+    background-color: rgb(94, 9, 9); /*light blue background color*/
     margin: 0; /*remove default margin*/
+}
+
+/*next will create class to move cards away from the edge of the screen*/
+.container{
+    max-width: 900px; /*set max width of container to 900px*/
+    margin: 1rem 2rem; /*add margin to the top and bottom of the container*/
 }
 
 .card-grid{
@@ -28,7 +34,7 @@ border-radius: .25rem;  /*rounded corners*/
 box-shadow: 0 0 5px 2px rgba(0,0,0,.3); 
 background-color: white;
 transform-style: preserve-3d; /*preserve the 3D effect when rotating*/
-height: 150px; /*height of the card*/
+/*height: 150px; /*height of the card | removed after implementing setMaxHeight function*/
 /*width: 150px; /*width of the card- REMOVED after adding grid elements in .card:grid*/
 transition: 150ms; /*animate the rotation over 150 milliseconds*/
 transform: perspective(1000px) rotateY(var(--rotate-y,0)) 
@@ -42,7 +48,7 @@ translateY(var(--translate-y,0));
 
 
 .card:hover {
-    translate-y: -2px;/* move the card up 2 pixels on hover;*/
+    transform: translate-y(-2px);/* move the card up 2 pixels on hover;*/
     box-shadow: 0 0 10px 4px rgba(0,0,0,.3); /*increase the shadow on hover*/ 
     cursor: pointer; 
 }
@@ -76,7 +82,7 @@ translateY(var(--translate-y,0));
 
 /*flashcard-options is the array list (the div) that contains the options for each flashcard*/
 .flashcard-options {
-margin-top: .5 rem; /*add margin to the top of the options*/
+margin-top: 0.5rem; /*add margin to the top of the options*/
 
 
 }
