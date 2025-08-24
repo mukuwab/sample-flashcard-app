@@ -61,8 +61,11 @@ function App() {
       .get("https://opentdb.com/api.php?amount=10")
       .then(res => {
         setFlashcards(res.data.results.map((questionItem, index) => {
-          const answer = questionItem.correct_answer//set answer to correct_answer from API
-          const options = [...questionItem.incorrect_answers, answer]//spread operator to combine incorrect_answers and correct_answer into one array
+          const answer = decodeString(questionItem.correct_answer)//set answer to correct_answer from API
+          const options = [...questionItem.incorrect_answers.map(a => decodeString(a)), 
+            answer
+          ]
+          //spread operator to combine incorrect_answers and correct_answer into one array
           //incorrect_answers is an array of incorrect answers from the API
           //back is the correct answer from the API
           //we want to combine them into one array called options
@@ -73,7 +76,8 @@ function App() {
       
           return {
           id: `${index}-${Date.now()}`, //unique id for each flashcard
-          question: questionItem.question, //question is the question text
+          question: decodeString(questionItem.question), //question is the question text
+          //call the decodeString function to decode any HTML entities in the question
           answer: answer, //correct_answer is the answer to the question
           //make sure to reference the correct key names from the API
           options: options.sort(() => Math.random() - 0.5) //shuffle the options array randomly
@@ -120,8 +124,6 @@ function App() {
     <FlashcardList flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
   );
 }
-
-
 
 export default App;
 

@@ -2,7 +2,13 @@
 body{
 
     background-color: aqua; /*light blue background color*/
+    margin: 0; /*remove default margin*/
 }
+
+.card-grid{
+    display: grid; /*use CSS grid to layout the cards*/
+}
+
 .card {
 
 display: flex;
