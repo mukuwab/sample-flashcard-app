@@ -55,17 +55,14 @@ function App() {
   //initial value (default value) is SAMPLE_FLASHCARDS
   //flashcards is the current value of the state variable
 
- 
 
-
-  
   useEffect(() => {
     axios
       .get("https://opentdb.com/api.php?amount=10")
       .then(res => {
-        res.data.results.map((questionItem, index) => {
+        setFlashcards(res.data.results.map((questionItem, index) => {
           const answer = questionItem.correct_answer//set answer to correct_answer from API
-          const options = [...questionItem.incorrect_answers, back]//spread operator to combine incorrect_answers and correct_answer into one array
+          const options = [...questionItem.incorrect_answers, answer]//spread operator to combine incorrect_answers and correct_answer into one array
           //incorrect_answers is an array of incorrect answers from the API
           //back is the correct answer from the API
           //we want to combine them into one array called options
@@ -87,7 +84,7 @@ function App() {
           
         }
       
-      })
+      }))
       console.log(res.data)
      // .catch(err => console.error(err));
       //make a GET request to the API
@@ -110,6 +107,15 @@ function App() {
 
   }, []) //empty dependency array means this will only run once when the component mounts
 
+  function decodeString(str) {//pass in a string
+    const textArea = document.createElement('textarea');//create a textarea element
+    textArea.innerHTML = str;//set the innerHTML of the textarea to the string
+    return textArea.value;//return the value of the textarea
+    
+    //this will decode any HTML entities in the string
+    //for example, &amp; will be converted to &
+  
+  }
   return (
     <FlashcardList flashcards={flashcards} />//pass flashcards as a prop to Flashcard component
   );
