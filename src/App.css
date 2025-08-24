@@ -20,12 +20,11 @@ translateY(var(--translate-y,0));
 
 /* translateY...  default value is 0 */
 /* create a hover effect for the card */
-/*cursor: pointer; /*change the cursor to a pointer when hovering over the card*/
 }
 
 
 .card:hover{
-   /*--translate-y: -2px; move the card up 2 pixels on hover;*/
+    translate-y: -2px;/* move the card up 2 pixels on hover;*/
     box-shadow: 0 0 10px 4px rgba(0,0,0,.3); /*increase the shadow on hover*/ 
     cursor: pointer; 
 }
@@ -50,4 +49,30 @@ translateY(var(--translate-y,0));
 {
     transform: rotateY(180deg); /*rotate the back of the card 180 degrees*/
     /*will flip the text on the back of the card*/
+}
+
+.card .front {
+
+    left: 0; /* makes sure that the wording on the front of the card is aligned to the left */
+    /* the answer on the back of the card is centered by default */
+
+}
+
+/*flashcard-options is the array list (the div) that contains the options for each flashcard*/
+.flashcard-options {
+margin-top: .5 rem; /*add margin to the top of the options*/
+
+
+}
+
+/* reference each individual option using .flashcard-option */
+.flashcard-option {
+   margin-top: .25rem; /*add margin to the top of each option*/
+   color: #555; /*dark gray color for the text*/
+   font-size: .75rem; /*font size of the options*/
+}
+
+/*.flashcard-option:first-child references the first option in the list of options*/
+.flashcard-option:first-child{
+    margin-top: 0; /*remove the margin from the top of the first option*/
 }
