@@ -1,7 +1,7 @@
 
 //Hello this is monica
 //Need to store the SAMPLE_FLASHCARDS in a state variable
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, useRef} from 'react';
 
 import FlashcardList from './FlashcardList'; //import Flashcard component
 //retrieve the Flashcard component from the Flashcard.js file
@@ -55,7 +55,25 @@ function App() {
   //function is setFlashcards
   //initial value (default value) is SAMPLE_FLASHCARDS
   //flashcards is the current value of the state variable
+  
+  const categoryEl = useRef();
+  //useRef() will create a reference to the category element in the DOM
+  //categoryEl is a variable that will hold the reference to the element
+  //we can then use this variable to access the element in the DOM
+  //used to have access to any variable you want that persists between renders
 
+  useEffect(() => {
+    axios
+      .get("https://opentdb.com/api_category.php?")
+      //make sure to put a question mark at the end of the URL
+      .then(res => {
+        console.log(res.data)//log the data to the console to see what it looks like
+        //res is the response from the API
+      })
+    }, []) //empty dependency array means this will only run once when the component mounts
+  //this will get the categories from the API
+  //will run only once when the component mounts (loads for the first time)
+  //will not run again unless the component unmounts and remounts
 
   useEffect(() => {
     axios
@@ -116,19 +134,36 @@ function App() {
     const textArea = document.createElement('textarea');//create a textarea element
     textArea.innerHTML = str;//set the innerHTML of the textarea to the string
     return textArea.value;//return the value of the textarea
-    
     //this will decode any HTML entities in the string
     //for example, &amp; will be converted to &
   
   }
+
+
+  function handleSubmit(e) {
+    //e is the event object
+    e.preventDefault();
+    //prevents the form from submitting the default way and refreshing the page
+    //we want to handle the form submission ourselves, forcing it to go through the react code
+  }
+
   return (
-    <div className="container">
-      <FlashcardList flashcards={flashcards} />
-    </div>
-    //FlashcardList component to display the list of flashcards
-    //pass flashcards as a prop to FlashcardList component
-    //div with className container for styling
-    //this will prevent the flashcards from touching the edges of the screen
+  <> {/* React fragment to wrap the components without adding an extra div to the DOM */}
+      <form className='header' onSubmit={handleSubmit}>
+        {/* onSubmit will call the handleSubmit function when the form is submitted */}
+        <div className="form-group">
+          <label htmlFor="category">Category</label>
+          <select id="category" ref={categoryEl}></select>
+        </div>
+      </form>
+      <div className="container">
+        <FlashcardList flashcards={flashcards} />
+      </div>
+      //FlashcardList component to display the list of flashcards
+      //pass flashcards as a prop to FlashcardList component
+      //div with className container for styling
+      //this will prevent the flashcards from touching the edges of the screen
+  </>
   );
 }
 

@@ -1,7 +1,7 @@
 //use rfc to create a react functional component
 //uses the extension ES7+React/Redux/GraphQL/React-Native snippets
 
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, use} from 'react'
 //useState will allow us to use state in a functional component
 //it will handle the flipping of the flashcard to show the answer
 
@@ -56,7 +56,13 @@ export default function Flashcard({flashcard}) {
   //whenever any of the above change, the useEffect will run the function to set the max height
   //this will ensure that the height of the container is always correct based on the content
 
-
+  useEffect(() => { window.addEventListener('resize', setMaxHeight);
+    //every time the window is resized, run the setMaxHeight function
+    return () => window.removeEventListener('resize', setMaxHeight);
+    //cleanup function to remove the event listener when the component unmounts
+    //returm called when the component unmounts/destroys itself
+  }, []); 
+  //will cause components to change heigh dynamically when the window is resized based on the content
 
   return (
     <div 
