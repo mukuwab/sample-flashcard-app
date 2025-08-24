@@ -62,11 +62,56 @@ function App() {
   //we can then use this variable to access the element in the DOM
   //used to have access to any variable you want that persists between renders
 
+  //create a new state variable to hold the categories from the API
+  const [categories, setCategories] = useState([]);
+
+  const amountEl = useRef();
+  //useRef() will create a reference to the amount element in the DOM
+
+  useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get("https://opentdb.com/api_category.php?");
+      setCategories(res.data.trivia_categories);
+    } catch (err) {
+      console.error("Failed to fetch categories:", err);
+      setCategories([]); // fallback to empty array
+    }
+  };
+  fetchCategories();
+}, []);
+
+useEffect(() => {
+  const fetchQuestions = async () => {
+    try {
+      const res = await axios.get("https://opentdb.com/api.php?amount=10");
+      const newFlashcards = res.data.results.map((q, idx) => {
+        const answer = decodeString(q.correct_answer);
+        const options = [...q.incorrect_answers.map(a => decodeString(a)), answer].sort(() => Math.random() - 0.5);
+        return {
+          id: `${idx}-${Date.now()}`,
+          question: decodeString(q.question),
+          answer: answer,
+          options
+        };
+      });
+      setFlashcards(newFlashcards);
+    } catch (err) {
+      console.error("Failed to fetch questions, using sample flashcards:", err);
+      setFlashcards(SAMPLE_FLASHCARDS); // fallback
+    }
+  };
+  fetchQuestions();
+}, []);
+
+
   useEffect(() => {
     axios
       .get("https://opentdb.com/api_category.php?")
       //make sure to put a question mark at the end of the URL
       .then(res => {
+        
+        setCategories(res.data.trivia_categories)
         console.log(res.data)//log the data to the console to see what it looks like
         //res is the response from the API
       })
@@ -153,7 +198,26 @@ function App() {
         {/* onSubmit will call the handleSubmit function when the form is submitted */}
         <div className="form-group">
           <label htmlFor="category">Category</label>
-          <select id="category" ref={categoryEl}></select>
+          <select id="category" ref={categoryEl}>
+            {categories.map(category => {
+              return <option value={category.id} key={category.id}>{category.name}</option>
+              //loop through the categories array and return an option for each category
+              //value is the id of the category
+              //key is a unique identifier for each option
+              //prevents unnecessary re-renders of the component (option)
+            })}
+
+
+          </select>
+        
+        </div>
+        <div className="form-group">
+        <label htmlFor="amount">Number of Questions</label>
+        <input type="number" id="amount" min="1" step="1" defaultValue={10} ref ={amountEl} />
+        {/* defaultValue is the default value of the input */}
+        {/* min is the minimum value of the input */}
+        {/* step is the increment value of the input */}
+
         </div>
       </form>
       <div className="container">
